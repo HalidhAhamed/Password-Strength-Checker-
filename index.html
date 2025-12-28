@@ -1,0 +1,47 @@
+
+<html>
+<head>
+  <title>Password Strength Checker</title>
+</head>
+
+<body>
+  <h3>Password Strength Checker <br>Version 1.0</h3>
+  <input type="password" id="password" placeholder="Enter password">
+  <p id="result"></p>
+  <h4> Password Strength Rules (Recommended)<br></br> A strong password should have: <br><ul>
+  <li>At least 8 characters</li>
+  <li>Uppercase letter (A–Z)</li>
+  <li>Lowercase letter (a–z)</li>
+  <li>Number (0–9)</li>
+  <li>Special character (!@#$%^&*)</li>
+</ul>
+
+
+
+
+
+  <script>
+    document.getElementById("password").addEventListener("input", function () {
+      const password = this.value;
+      let strength = 0;
+
+      if (password.length >= 8) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[a-z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      const result = document.getElementById("result");
+
+
+      if (strength <= 2) {
+        result.textContent = "Weak Password " ;
+      } else if (strength === 3 || strength === 4) {
+        result.textContent = "Medium Password ";
+      } else {
+        result.textContent = "Strong Password ";
+      }
+    });
+  </script>
+</body>
+</html>
